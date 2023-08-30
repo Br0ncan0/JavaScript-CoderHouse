@@ -1,0 +1,181 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contenedor{
+  min-height: 100vh;
+  background: linear-gradient(90deg, rgba(162,162,162,1) 0%, rgba(255,255,255,1) 100%);
+  padding: 10px;
+
+}
+
+.main{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  padding-top: 50px;
+}
+
+.main h1{
+  color: #000;
+  text-align: center;
+  padding: 0 30% 0 30%;
+}
+
+.main img{
+  height: 50px;
+}
+
+.fa-github{
+  align-self: center;
+  color: #000;
+}
+
+.fa-github:hover{
+  color: gray;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.icon{
+  align-content: center;
+  justify-content: center;
+}
+
+
+.todo-app{
+  width: 100%;
+  max-width: 700px;
+  background: #454545;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 10px;
+}
+
+.todo-app h2{
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*Si se desea colocar una imagen, esas seran las dimensiones*/
+/*
+.todo-app h2 img{
+ width: 30px; 
+ margin-left: 10px;
+}
+*/
+
+.fila{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #edeef0;
+  border-radius: 30px;
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+input{
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px;
+  font-weight: 14px;
+}
+
+button{
+  border: none;
+  outline: none;
+  padding: 16px 50px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 40px;
+}
+
+/* Menu de actividades */
+
+ul li{
+  list-style: none;
+  font-size: 17px;
+  padding: 12px 8px 12px 50px;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+ul li::before{
+  content: '';
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-image: url(../images/unchecked.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
+}
+
+ul li.checked{
+  color: #555;
+  text-decoration: line-through;
+}
+
+ul li.checked::before{
+  background-image: url(../images/checked.png);
+}
+
+ul li span{
+  position: absolute;
+  right: 0;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  color: #555;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+ul li span:hover{
+  background: #edeef0;
+}
+
+
+.titulos{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: white;
+  text-align: center;
+  padding-left: 40px;
+}
+
+.titulos h3{
+  text-align: center;
+}
+
+.tarea{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: white;
+  text-align: center;
+}
+
+.boton-eliminar{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+
+
+
+

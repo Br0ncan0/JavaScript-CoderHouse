@@ -48,7 +48,7 @@
 
 .todo-app{
   width: 100%;
-  max-width: 700px;
+  max-width: 1200px;
   background: #454545;
   margin: 100px auto 20px;
   padding: 40px 30px 70px;
@@ -99,73 +99,48 @@ button{
   border-radius: 40px;
 }
 
+
 /* Menu de actividades */
+
+.contenedor-lista{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
 
 ul li{
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 12px 8px 12px 3px;
   user-select: none;
   cursor: pointer;
   position: relative;
 }
 
-ul li::before{
-  content: '';
-  position: absolute;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background-image: url(../images/unchecked.png);
-  background-size: cover;
-  background-position: center;
-  top: 12px;
-  left: 8px;
-}
-
-ul li.checked{
-  color: #555;
-  text-decoration: line-through;
-}
-
-ul li.checked::before{
-  background-image: url(../images/checked.png);
-}
-
-ul li span{
-  position: absolute;
-  right: 0;
-  top: 5px;
-  width: 40px;
-  height: 40px;
-  font-size: 22px;
-  color: #555;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 50%;
-}
-
-ul li span:hover{
-  background: #edeef0;
-}
-
-
-.titulos{
+#contenedor-lista li div, .titulos{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: white;
+  align-items: center;
+  grid-template-columns:  20fr 35fr 25fr 25fr 25fr;
   text-align: center;
-  padding-left: 40px;
+  color: white;
 }
+
+#contenedor-lista li div input{
+  flex: 0;
+}
+
+
+
+/*
+.titulos{
+  display: flex;
+  color: white;
+  justify-content: space-evenly;
+  padding-left: 40px;
+  padding-bottom: 20px;
+}*/
 
 .titulos h3{
-  text-align: center;
-}
-
-.tarea{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: white;
   text-align: center;
 }
 
@@ -173,9 +148,10 @@ ul li span:hover{
   display: flex;
   justify-content: center;
   align-content: center;
+  padding-top: 30px;
 }
 
 
 
 
-
+                                                

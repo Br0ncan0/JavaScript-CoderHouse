@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/styles.css">
   <title>Entrega Final</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.2/build/global/luxon.min.js"></script>
+  <script src="./libreria/luxon.js"></script>
 </head>
 <body>
   <div class="contenedor">
@@ -23,31 +23,23 @@
         </a>
      </div>
     </div>
+
     <div class="todo-app">
       <h2>Lista de actividades</h2>
       <div class="fila">
         <input type="text" id="caja_input" placeholder="Ingresa una actividad">
         <button onclick="agregarTarea()">Añadir</button>
       </div>
-      <ul id="contenedor-lista">
-        <div class="titulos">
+      <div class="titulos">
+          <h3>Check</h3>
           <h3>Nombre</h3>
           <h3>Prioridad</h3>
           <h3>Fecha Registro</h3>
           <h3>Fecha fin</h3>
-        </div>
-        <li class="lista">
-          <div class="tarea">
-            <p id="nombre">Resolver actividades coder</p>
-            <p id="Prioridad">Prioridad 1</p>
-            <p id="Fecha1">hoy</p>
-            <p id="Fecha2"> - </p>
-          </div>
-        </li>
-        <li>Task 4</li>
-        <!-- <li class="checked">Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li> -->
+      </div>
+
+      <ul id="contenedor-lista">
+        
       </ul>
       <div class="boton-eliminar">
         <button onclick="quitarTarea()">Eliminar tarea</button>

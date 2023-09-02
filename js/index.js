@@ -4,15 +4,13 @@ const title = document.getElementById("title");
 const listContainer = document.getElementById("contenedor-lista");
 const enlace = document.getElementById("enlace")
 const parent = document.body;
-const date = luxon.DateTime.now().toString();
-const now = Datetime.fromISO(date).toLocaleString(DateTime.DATEFULL);
 const tareas = [];
+var DateTime = luxon.DateTime;
+const now = DateTime.now().toLocaleString(DateTime.DATE_FULL);
+
 const user = "";
 
-alert(now);
-
 // Validacion con Sweet Alert para obtener datos del usuario y tambien su avatar
-
 Swal.fire({
   title: 'Ingresa tu username de Github: ',
   input: 'text',
@@ -44,32 +42,23 @@ Swal.fire({
       imageUrl: result.value.avatar_url
     })
 
-    title.remove() //Elimina titulo actual
 
-    let h1 = document.createElement("h1");
+    let h1 = document.getElementById("title");
     h1.innerHTML = `Hola, ${result.value.login}!`;
-    main.insertChildAtIndex(h1, 1);
 
     enlace.href = `https://www.github.com/${result.value.login}`; //Coloca enlace de github de la persona que ingreso
 
   }
 }) 
 
-// Para insertar elementos por posicion
-Element.prototype.insertChildAtIndex = function(child, index) {
-  if (!index) index = 0
-  if (index >= this.children.length) {
-    this.appendChild(child)
-  } else {
-    this.insertBefore(child, this.children[index])
-  }
-}
 
 // Añadimos una clase para crear objetos "tarea", con el fin de crear las tareas que querramos
-
 class Tarea{
-  constructor(id = "tarea" + toString(tareas.length+1), nombre, prioridad = "Prioridad 1", fecha = now, estado = true, fecha_fin = ' - '){
-    this.id = id;
+
+  static #nextId = 1;
+
+  constructor(nombre, prioridad = "Prioridad 1", fecha = now, estado = true, fecha_fin = '-'){
+    this.id = "tarea" + Tarea.#nextId++;
     this.nombre = nombre;
     this.prioridad = prioridad;
     this.fecha = fecha;
@@ -77,8 +66,8 @@ class Tarea{
     this.fecha_fin = fecha_fin;
   }
 
-  terminarTarea(fecha){
-    this.estado = false; //Tarea terminada
+  cambiarStatus(){
+    this.estado = false;
     this.fecha_fin = now;
   }
 }
@@ -96,18 +85,22 @@ function agregarTarea(){
   else {
 
     let tarea = '';
-    let li = document.createElement("li");
-    li.setAttribute(ID, "lista")
 
-    tarea = new Tarea(nombre = inputBox.value)
-    tareas.append(tarea)
+    tarea = new Tarea(nombre = inputBox.value);
+    tareas.push(tarea);
 
-    li.innerHTML = `<div class="${tarea.id}">
-                              <p id="nombre"> ${tarea.nombre}</p>
-                              <p id="prioridad">${tarea.prioridad}</p>
-                              <p id="Fecha1">${tarea.fecha}</p>
-                              <p id="Fecha2>${tarea.fecha_fin}</p>
-                            </div>`
+    task = `<li id="${tarea.id}">
+      <div id="tarea">
+      <input type="checkbox" id="check${tarea.id}">
+      <p id="nombre">${tarea.nombre}</p>
+      <p id="prioridad">${tarea.prioridad}</p>
+      <p id="Fecha1">${tarea.fecha}</p>
+      <p id="Fecha2">${tarea.fecha_fin}</p>
+      </div>
+      </li>`;
+
+
+    listContainer.insertAdjacentHTML('beforeend', task);
   }
 
   inputBox.value = '';
@@ -117,29 +110,30 @@ function agregarTarea(){
 //Por terminar
 
 function quitarTarea(){
-  let count = document.querySelectorAll("#contenedor-lista .lista").length
-  if(count <= 0){
+
+  let ids = []
+  tareas_activas = tareas.filter((el) => el.estado == true);
+
+  for(let i = 0; i <= tareas_activas.length; i++){
+    id = tareas_activas[i]?.id;
+    ids.push(id);
+    if(document.getElementById("check"+id).checked == true){
+      document.getElementById(id).remove();
+      tareas[i].cambiarStatus();
+    }else{
+      continue
+    }
+  }
+
+  if (tareas.length == 0){
     Swal.fire({
-      
+        icon: 'error',
+        title: 'Error!',
+        text: 'No cuenta con actividades por eliminar.', 
     })
   }
 }
 
-listContainer.addEventListener("click", function(e){
-  if(e.target.tagName === "LI"){
-    e.target.classList.toggle("checked");
-  }
-  else if(e.target.tagName === "SPAN"){
-    e.target.parentElement.remove();
-  }
-}, false);
-
 function saveData(){
-  localStorage.setItem("data", listContainer.innerHTML);
+  sessionStorage.setItem("data", listContainer.innerHTML);
 }
-
-function showTask(){
-  listContainer.innerHTML = localStorage.getItem("data");
-}
-
-showTask()
